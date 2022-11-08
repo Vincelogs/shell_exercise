@@ -1,18 +1,30 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdbool.h>
 
-int main(int argc, char **argv)
+
+/*
+ * main - code
+ * @argc: argument count
+ * @argv: argument variables
+ *
+ * Return: 0.
+ */
+
+int main(int argc, char *argv[])
 {
-    int t[4];
-    int i;
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t nread;
+	
+	(void)argc;
+	(void)argv;
 
-    for(i=0; i<4; i++)
-        scanf("%d", &t[i]);
-    for(i=0; i<4; i++)
-        printf("%d\n", t[i]);
+	printf("$ ");
 
-    return 0;
+	nread = getline(&line, &len, stdin);
+	printf("%s", line);
+	printf("Number of characters: %ld\n", nread);
+
+	free(line);
+	exit(EXIT_SUCCESS);
 }
